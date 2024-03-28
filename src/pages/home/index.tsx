@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Heading, Text } from "@ignite-ui/react";
 
+import ClainUsernameForm from "./components/ClainUsernameForm";
+
 import PreviewImage from "../../assets/app-preview.png";
 
 import { Container, Hero, Preview } from "./styles";
-import { ClainUsernameForm } from "./components/ClainUsernameForm";
 
 export default function Home() {
   return (

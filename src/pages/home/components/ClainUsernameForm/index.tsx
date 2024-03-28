@@ -1,11 +1,31 @@
 import { Button, TextInput } from "@ignite-ui/react";
-import { Form } from "./styles";
 import { ArrowRight } from "phosphor-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-export const ClainUsernameForm = () => {
+import { Form } from "./styles";
+
+const ClaimUsernameFormSchema = z.object({
+  username: z.string(),
+});
+
+type ClaimUsernameFormData = z.infer<typeof ClaimUsernameFormSchema>;
+
+const ClainUsernameForm = () => {
+  const { register, handleSubmit } = useForm<ClaimUsernameFormData>();
+
+  async function handleClaimUsername(data: ClaimUsernameFormData) {
+    console.log(data);
+  }
+
   return (
-    <Form>
-      <TextInput size="sm" prefix="ignite.com/" placeholder="seu-usuario" />
+    <Form as="form" onSubmit={handleSubmit(handleClaimUsername)}>
+      <TextInput
+        size="sm"
+        prefix="ignite.com/"
+        placeholder="seu-usuario"
+        {...register("username")}
+      />
       <Button size="sm" type="submit">
         Reservar
         <ArrowRight />
@@ -13,3 +33,5 @@ export const ClainUsernameForm = () => {
     </Form>
   );
 };
+
+export default ClainUsernameForm;
